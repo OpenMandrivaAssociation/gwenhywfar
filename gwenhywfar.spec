@@ -4,12 +4,12 @@
 %define develname %mklibname -d %name
 Summary: A multi-platform helper library for other libraries
 Name: gwenhywfar
-Version: 3.3.2
-Release: %mkrel 2
+Version: 3.3.3
+Release: %mkrel 1
 Source: http://prdownloads.sourceforge.net/gwenhywfar/%{name}-%{version}.tar.gz
 Patch0: gwenhywfar-1.10.0-lib64.patch
-BuildRequires: automake1.9
-BuildRequires: autoconf2.5 >= 2.58
+BuildRequires: automake
+BuildRequires: autoconf >= 2.58
 BuildRequires: openssl-devel
 BuildRequires: ncurses-devel
 BuildRequires: zlib-devel
