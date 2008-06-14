@@ -4,7 +4,7 @@
 %define develname %mklibname -d %name
 Summary: A multi-platform helper library for other libraries
 Name: gwenhywfar
-Version: 3.3.3
+Version: 3.3.4
 Release: %mkrel 1
 Source: http://prdownloads.sourceforge.net/gwenhywfar/%{name}-%{version}.tar.gz
 Patch0: gwenhywfar-1.10.0-lib64.patch
