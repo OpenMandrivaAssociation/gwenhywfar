@@ -4,7 +4,7 @@
 %define develname %mklibname -d %name
 Summary: A multi-platform helper library for other libraries
 Name: gwenhywfar
-Version: 3.3.5
+Version: 3.4.1
 Release: %mkrel 1
 Source: http://prdownloads.sourceforge.net/gwenhywfar/%{name}-%{version}.tar.gz
 Patch0: gwenhywfar-1.10.0-lib64.patch
@@ -16,7 +16,7 @@ BuildRequires: zlib-devel
 BuildRequires: libgcrypt-devel
 BuildRequires: gnutls-devel
 Group: System/Libraries
-License: LGPL
+License: LGPLv2+
 URL: http://sourceforge.net/projects/gwenhywfar
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
 
@@ -49,13 +49,12 @@ compiling programs using Gwenhywfar.
 %prep
 %setup -q
 %patch0 -p1 -b .lib64
-aclocal -I m4
-autoconf
-automake --foreign
+cp /usr/share/gettext/config.rpath .
+make -f Makefile.cvs
 
 %build
 %configure2_5x --disable-static
-%make
+%make LIBS=-lpthread
 
 %install
 rm -fr $RPM_BUILD_ROOT %name.lang
