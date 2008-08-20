@@ -10,6 +10,7 @@ Source: http://prdownloads.sourceforge.net/gwenhywfar/%{name}-%{version}.tar.gz
 Patch0: gwenhywfar-1.10.0-lib64.patch
 BuildRequires: automake
 BuildRequires: autoconf >= 2.58
+BuildRequires: gettext-devel
 BuildRequires: openssl-devel
 BuildRequires: ncurses-devel
 BuildRequires: zlib-devel
