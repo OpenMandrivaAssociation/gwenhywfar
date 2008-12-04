@@ -6,8 +6,7 @@ Summary: A multi-platform helper library for other libraries
 Name: gwenhywfar
 Version: 3.5.2
 Release: %mkrel 1
-#http://www.aquamaniac.de/sites/download/download.php?package=01&release=15&file=01&dummy=
-Source: %{name}-%{version}.tar.gz
+Source: http://files.hboeck.de/aq/%{name}-%{version}.tar.gz
 Patch0: gwenhywfar-1.10.0-lib64.patch
 BuildRequires: automake
 BuildRequires: autoconf >= 2.58
