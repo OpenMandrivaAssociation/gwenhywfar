@@ -5,7 +5,7 @@
 Summary: A multi-platform helper library for other libraries
 Name: gwenhywfar
 Version: 3.5.2
-Release: %mkrel 1
+Release: %mkrel 2
 Source: http://files.hboeck.de/aq/%{name}-%{version}.tar.gz
 Patch0: gwenhywfar-1.10.0-lib64.patch
 BuildRequires: automake
