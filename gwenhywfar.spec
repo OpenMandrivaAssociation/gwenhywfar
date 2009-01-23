@@ -4,10 +4,11 @@
 %define develname %mklibname -d %name
 Summary: A multi-platform helper library for other libraries
 Name: gwenhywfar
-Version: 3.5.2
-Release: %mkrel 2
+Version: 3.7.0
+Release: %mkrel 1
 Source: http://files.hboeck.de/aq/%{name}-%{version}.tar.gz
-Patch0: gwenhywfar-1.10.0-lib64.patch
+Patch0: gwenhywfar-3.7.0-lib64.patch
+Patch1: gwenhywfar-3.7.0-fix-str-fmt.patch
 BuildRequires: automake
 BuildRequires: autoconf >= 2.58
 BuildRequires: gettext-devel
@@ -50,6 +51,7 @@ compiling programs using Gwenhywfar.
 %prep
 %setup -q
 %patch0 -p1 -b .lib64
+%patch1 -p0 -b .str
 cp /usr/share/gettext/config.rpath .
 make -f Makefile.cvs
 
