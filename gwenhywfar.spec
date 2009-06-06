@@ -4,12 +4,11 @@
 %define develname %mklibname -d %name
 Summary: A multi-platform helper library for other libraries
 Name: gwenhywfar
-Version: 3.8.1
+Version: 3.8.2
 Release: %mkrel 1
-Source: http://www2.aquamaniac.de/sites/download/download.php?package=01&release=23&file=01&dummy=%name-%version.tar.gz
-#Source: http://files.hboeck.de/aq/%{name}-%{version}.tar.gz
+#http://www2.aquamaniac.de/sites/download/download.php?package=01&release=23&file=01&dummy=gwenhywfar-3.8.2.tar.gz
+Source: http://files.hboeck.de/aq/%{name}-%{version}.tar.gz
 Patch0: gwenhywfar-3.7.0-lib64.patch
-Patch1: gwenhywfar-3.8.1-gnutls-2.8.patch
 Patch2: gwenhywfar-3.8.1-fix-linkage.patch
 BuildRequires: automake
 BuildRequires: autoconf >= 2.58
@@ -53,7 +52,6 @@ compiling programs using Gwenhywfar.
 %prep
 %setup -q
 %patch0 -p1 -b .lib64
-%patch1 -p0 -b .gnutls
 %patch2 -p0 -b .link
 
 %build
