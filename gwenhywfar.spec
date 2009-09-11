@@ -4,7 +4,7 @@
 %define develname %mklibname -d %name
 Summary: A multi-platform helper library for other libraries
 Name: gwenhywfar
-Version: 3.9.0
+Version: 3.10.1
 Release: %mkrel 1
 #http://www2.aquamaniac.de/sites/download/download.php?package=01&release=23&file=01&dummy=gwenhywfar-3.8.2.tar.gz
 Source: http://files.hboeck.de/aq/%{name}-%{version}.tar.gz
@@ -94,6 +94,7 @@ perl -pi -e "s°-L$RPM_BUILD_DIR/%name-%version/src°°" %buildroot%_libdir/*.la %b
 %{_bindir}/xmlmerge
 %{_bindir}/mklistdoc
 %{_bindir}/typemaker
+%{_bindir}/typemaker2
 %{_includedir}/gwenhywfar3
 %{_libdir}/*.so
 %attr(644,root,root)  %{_libdir}/*.la
