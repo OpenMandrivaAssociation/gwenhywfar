@@ -4,7 +4,7 @@
 %define develname %mklibname -d %name
 Summary: A multi-platform helper library for other libraries
 Name: gwenhywfar
-Version: 3.10.1
+Version: 3.11.1
 Release: %mkrel 1
 #http://www2.aquamaniac.de/sites/download/download.php?package=01&release=23&file=01&dummy=gwenhywfar-3.8.2.tar.gz
 Source: http://files.hboeck.de/aq/%{name}-%{version}.tar.gz
