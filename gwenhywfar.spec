@@ -7,8 +7,8 @@
 
 Summary: A multi-platform helper library for other libraries
 Name: gwenhywfar
-Version: 3.11.6
-Release: %mkrel 3
+Version: 3.11.7
+Release: %mkrel 1
 #http://www2.aquamaniac.de/sites/download/download.php?package=01&release=23&file=01&dummy=gwenhywfar-3.8.2.tar.gz
 Source: http://files.hboeck.de/aq/%{name}-%{version}beta.tar.gz
 Patch2: gwenhywfar-3.11.6-fix-linkage.patch
