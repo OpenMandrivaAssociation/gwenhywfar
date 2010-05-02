@@ -8,7 +8,7 @@
 Summary: A multi-platform helper library for other libraries
 Name: gwenhywfar
 Version: 3.11.7
-Release: %mkrel 1
+Release: %mkrel 2
 #http://www2.aquamaniac.de/sites/download/download.php?package=01&release=23&file=01&dummy=gwenhywfar-3.8.2.tar.gz
 Source: http://files.hboeck.de/aq/%{name}-%{version}beta.tar.gz
 Patch2: gwenhywfar-3.11.6-fix-linkage.patch
@@ -45,7 +45,7 @@ and OpenHBCI-TNG (The Next Generation).
 %package -n %qt4libname
 Summary: A multi-platform helper library for other libraries
 Group: System/Libraries
-Obsoletes: %{_lib}gwengui-qt4_0}
+Obsoletes: %{_lib}gwengui-qt4_0
 
 %description -n %qt4libname
 This is Gwenhywfar, a multi-platform helper library for networking and
