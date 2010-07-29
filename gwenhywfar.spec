@@ -1,5 +1,5 @@
 %define name gwenhywfar
-%define major 47
+%define major 59
 %define libname %mklibname %name %major
 %define qt4major 0
 %define qt4libname %mklibname gwengui-qt4_ %{qt4major}
@@ -7,11 +7,11 @@
 
 Summary: A multi-platform helper library for other libraries
 Name: gwenhywfar
-Version: 3.11.7
-Release: %mkrel 3
+Version: 3.99.13
+Release: %mkrel 1
 #http://www2.aquamaniac.de/sites/download/download.php?package=01&release=23&file=01&dummy=gwenhywfar-3.8.2.tar.gz
 Source: http://files.hboeck.de/aq/%{name}-%{version}beta.tar.gz
-Patch2: gwenhywfar-3.11.6-fix-linkage.patch
+Patch0: gwenhywfar-3.99.13-missing-file.patch
 BuildRequires: automake
 BuildRequires: autoconf >= 2.58
 BuildRequires: gettext-devel
@@ -66,7 +66,7 @@ compiling programs using Gwenhywfar.
 
 %prep
 %setup -qn %name-%{version}beta
-%patch2 -p0 -b .link
+%patch0 -p0
 
 %build
 %configure2_5x --disable-static \
@@ -116,7 +116,8 @@ perl -pi -e "s°-L$RPM_BUILD_DIR/%name-%version/src°°" %buildroot%_libdir/*.la %b
 %{_bindir}/mklistdoc
 %{_bindir}/typemaker
 %{_bindir}/typemaker2
-%{_includedir}/gwenhywfar3
+%{_includedir}/gwenhywfar4
+%{_includedir}/gwen-gui-cpp
 %{_includedir}/gwen-gui-qt4
 %{_libdir}/*.so
 %attr(644,root,root)  %{_libdir}/*.la
