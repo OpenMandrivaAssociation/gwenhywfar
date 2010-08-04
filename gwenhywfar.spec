@@ -2,16 +2,17 @@
 %define major 59
 %define libname %mklibname %name %major
 %define qt4major 0
+%define gtkmajor 0
+%define gtklibname %mklibname gwengui-gtk2_ %{gtkmajor}
 %define qt4libname %mklibname gwengui-qt4_ %{qt4major}
 %define develname %mklibname -d %name
 
 Summary: A multi-platform helper library for other libraries
 Name: gwenhywfar
-Version: 3.99.13
+Version: 3.99.16
 Release: %mkrel 1
 #http://www2.aquamaniac.de/sites/download/download.php?package=01&release=23&file=01&dummy=gwenhywfar-3.8.2.tar.gz
 Source: http://files.hboeck.de/aq/%{name}-%{version}beta.tar.gz
-Patch0: gwenhywfar-3.99.13-missing-file.patch
 BuildRequires: automake
 BuildRequires: autoconf >= 2.58
 BuildRequires: gettext-devel
@@ -21,6 +22,7 @@ BuildRequires: zlib-devel
 BuildRequires: libgcrypt-devel
 BuildRequires: gnutls-devel
 BuildRequires: qt4-devel
+BuildRequires: gtk2-devel
 BuildConflicts: %{develname} < %{version}
 Group: System/Libraries
 License: LGPLv2+
@@ -51,11 +53,21 @@ This is Gwenhywfar, a multi-platform helper library for networking and
 security applications and libraries. It is heavily used by libchipcard
 and OpenHBCI-TNG (The Next Generation).
 
+%package -n %gtklibname
+Summary: A multi-platform helper library for other libraries
+Group: System/Libraries
+
+%description -n %gtklibname
+This is Gwenhywfar, a multi-platform helper library for networking and
+security applications and libraries. It is heavily used by libchipcard
+and OpenHBCI-TNG (The Next Generation).
+
 %package -n %develname
 Summary: Gwenhywfar development kit
 Group: Development/C
 Requires: %{libname} = %{version}
 Requires: %{qt4libname} = %{version}
+Requires: %{gtklibname} = %{version}
 Provides: lib%name-devel = %{version}-%{release}
 Provides: %name-devel = %{version}-%{release}
 Obsoletes: %mklibname -d %name 38
@@ -66,12 +78,11 @@ compiling programs using Gwenhywfar.
 
 %prep
 %setup -qn %name-%{version}beta
-%patch0 -p0
 
 %build
 %configure2_5x --disable-static \
   --disable-rpath \
-  --with-guis=qt4 --with-qt4-libs=%{qt4lib} \
+  --with-guis="qt4 gtk2" --with-qt4-libs=%{qt4lib} \
   --with-openssl-libs=%{_libdir}
 %make
 
@@ -80,7 +91,7 @@ rm -fr $RPM_BUILD_ROOT %name.lang
 %makeinstall_std
 find %buildroot -name \*.la|xargs chmod 644
 %find_lang %name
-perl -pi -e "s°-L$RPM_BUILD_DIR/%name-%version/src°°" %buildroot%_libdir/*.la %buildroot%_libdir/%name/plugins/*/*/*.la
+perl -pi -e "s#-L$RPM_BUILD_DIR/%name-%version/src##" %buildroot%_libdir/*.la %buildroot%_libdir/%name/plugins/*/*/*.la
 
 %clean
 [ "$RPM_BUILD_ROOT" != "/" ] && rm -rf $RPM_BUILD_ROOT
@@ -109,6 +120,11 @@ perl -pi -e "s°-L$RPM_BUILD_DIR/%name-%version/src°°" %buildroot%_libdir/*.la %b
 %{_libdir}/libgwengui-qt4.so.%{qt4major}
 %{_libdir}/libgwengui-qt4.so.%{qt4major}.*
 
+%files -n %gtklibname
+%defattr(-,root,root)
+%{_libdir}/libgwengui-gtk2.so.%{gtkmajor}
+%{_libdir}/libgwengui-gtk2.so.%{gtkmajor}.*
+
 %files -n %develname
 %defattr(-,root,root)
 %{_bindir}/gwenhywfar-config
@@ -116,9 +132,11 @@ perl -pi -e "s°-L$RPM_BUILD_DIR/%name-%version/src°°" %buildroot%_libdir/*.la %b
 %{_bindir}/mklistdoc
 %{_bindir}/typemaker
 %{_bindir}/typemaker2
+%{_includedir}/gwenhywfar
 %{_includedir}/gwenhywfar4
 %{_includedir}/gwen-gui-cpp
 %{_includedir}/gwen-gui-qt4
+%{_includedir}/gwen-gui-gtk2
 %{_libdir}/*.so
 %attr(644,root,root)  %{_libdir}/*.la
 %{_libdir}/pkgconfig/*.pc
