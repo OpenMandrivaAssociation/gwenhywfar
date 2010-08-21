@@ -9,10 +9,10 @@
 
 Summary: A multi-platform helper library for other libraries
 Name: gwenhywfar
-Version: 3.99.16
+Version: 3.99.22
 Release: %mkrel 1
 #http://www2.aquamaniac.de/sites/download/download.php?package=01&release=23&file=01&dummy=gwenhywfar-3.8.2.tar.gz
-Source: http://files.hboeck.de/aq/%{name}-%{version}beta.tar.gz
+Source: http://files.hboeck.de/aq/%{name}-%{version}rc5.tar.gz
 BuildRequires: automake
 BuildRequires: autoconf >= 2.58
 BuildRequires: gettext-devel
@@ -77,7 +77,7 @@ This package contains gwenhywfar-config and header files for writing and
 compiling programs using Gwenhywfar.
 
 %prep
-%setup -qn %name-%{version}beta
+%setup -qn %name-%{version}rc5
 
 %build
 %configure2_5x --disable-static \
@@ -132,11 +132,7 @@ perl -pi -e "s#-L$RPM_BUILD_DIR/%name-%version/src##" %buildroot%_libdir/*.la %b
 %{_bindir}/mklistdoc
 %{_bindir}/typemaker
 %{_bindir}/typemaker2
-%{_includedir}/gwenhywfar
 %{_includedir}/gwenhywfar4
-%{_includedir}/gwen-gui-cpp
-%{_includedir}/gwen-gui-qt4
-%{_includedir}/gwen-gui-gtk2
 %{_libdir}/*.so
 %attr(644,root,root)  %{_libdir}/*.la
 %{_libdir}/pkgconfig/*.pc
