@@ -9,10 +9,10 @@
 
 Summary: A multi-platform helper library for other libraries
 Name: gwenhywfar
-Version: 3.99.22
+Version: 3.99.25
 Release: %mkrel 1
 #http://www2.aquamaniac.de/sites/download/download.php?package=01&release=23&file=01&dummy=gwenhywfar-3.8.2.tar.gz
-Source: http://files.hboeck.de/aq/%{name}-%{version}rc5.tar.gz
+Source: http://files.hboeck.de/aq/%{name}-%{version}rc.tar.gz
 BuildRequires: automake
 BuildRequires: autoconf >= 2.58
 BuildRequires: gettext-devel
@@ -23,7 +23,6 @@ BuildRequires: libgcrypt-devel
 BuildRequires: gnutls-devel
 BuildRequires: qt4-devel
 BuildRequires: gtk2-devel
-BuildConflicts: %{develname} < %{version}
 Group: System/Libraries
 License: LGPLv2+
 URL: http://gwenhywfar.sourceforge.net/
@@ -77,7 +76,7 @@ This package contains gwenhywfar-config and header files for writing and
 compiling programs using Gwenhywfar.
 
 %prep
-%setup -qn %name-%{version}rc5
+%setup -qn %name-%{version}rc
 
 %build
 %configure2_5x --disable-static \
