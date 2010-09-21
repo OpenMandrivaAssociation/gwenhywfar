@@ -9,9 +9,9 @@
 
 Summary: A multi-platform helper library for other libraries
 Name: gwenhywfar
-Version: 4.0.0
+Version: 4.0.1
 Release: %mkrel 1
-#http://www2.aquamaniac.de/sites/download/download.php?package=01&release=23&file=01&dummy=gwenhywfar-3.8.2.tar.gz
+#http://www2.aquamaniac.de/sites/download/download.php?package=01&release=23&file=01&dummy=gwenhywfar-4.0.1.tar.gz
 Source: http://files.hboeck.de/aq/%{name}-%{version}.tar.gz
 BuildRequires: automake
 BuildRequires: autoconf >= 2.58
@@ -23,6 +23,7 @@ BuildRequires: libgcrypt-devel
 BuildRequires: gnutls-devel
 BuildRequires: qt4-devel
 BuildRequires: gtk2-devel
+Suggests: %{name}-gui = %{version}
 Group: System/Libraries
 License: LGPLv2+
 URL: http://gwenhywfar.sourceforge.net/
@@ -46,6 +47,7 @@ and OpenHBCI-TNG (The Next Generation).
 %package -n %qt4libname
 Summary: A multi-platform helper library for other libraries
 Group: System/Libraries
+Provides: %{name}-gui = %{version}
 
 %description -n %qt4libname
 This is Gwenhywfar, a multi-platform helper library for networking and
@@ -55,6 +57,7 @@ and OpenHBCI-TNG (The Next Generation).
 %package -n %gtklibname
 Summary: A multi-platform helper library for other libraries
 Group: System/Libraries
+Provides: %{name}-gui = %{version}
 
 %description -n %gtklibname
 This is Gwenhywfar, a multi-platform helper library for networking and
