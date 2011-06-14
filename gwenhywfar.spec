@@ -9,7 +9,7 @@
 
 Summary: A multi-platform helper library for other libraries
 Name: gwenhywfar
-Version: 4.0.9
+Version: 4.1.0
 Release: %mkrel 1
 #http://www2.aquamaniac.de/sites/download/download.php?package=01&release=23&file=01&dummy=gwenhywfar-4.0.2.tar.gz
 Source: http://files.hboeck.de/aq/%{name}-%{version}.tar.gz
