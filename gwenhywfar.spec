@@ -10,7 +10,7 @@
 Summary: A multi-platform helper library for other libraries
 Name: gwenhywfar
 Version: 4.1.0
-Release: %mkrel 1
+Release: %mkrel 2
 #http://www2.aquamaniac.de/sites/download/download.php?package=01&release=23&file=01&dummy=gwenhywfar-4.0.2.tar.gz
 Source: http://files.hboeck.de/aq/%{name}-%{version}.tar.gz
 BuildRequires: automake
@@ -96,6 +96,10 @@ find %buildroot -name \*.la|xargs chmod 644
 perl -pi -e "s#-L$RPM_BUILD_DIR/%name-%version/src##" %buildroot%_libdir/*.la %buildroot%_libdir/%name/plugins/*/*/*.la
 
 ln -snf %{_sysconfdir}/pki/tls/certs/ca-bundle.crt %{buildroot}%{_datadir}/%{name}/ca-bundle.crt
+
+%if "%{_lib}" == "lib64"
+perl -pi -e "s|-L/usr/lib\b|-L%{_libdir}|g" %{buildroot}%{_libdir}/*.la
+%endif
 
 %clean
 [ "$RPM_BUILD_ROOT" != "/" ] && rm -rf $RPM_BUILD_ROOT
