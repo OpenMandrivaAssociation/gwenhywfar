@@ -9,8 +9,8 @@
 
 Summary: A multi-platform helper library for other libraries
 Name: gwenhywfar
-Version: 4.1.0
-Release: %mkrel 2
+Version: 4.2.1
+Release: %mkrel 1
 #http://www2.aquamaniac.de/sites/download/download.php?package=01&release=23&file=01&dummy=gwenhywfar-4.0.2.tar.gz
 Source: http://files.hboeck.de/aq/%{name}-%{version}.tar.gz
 BuildRequires: automake
@@ -104,18 +104,12 @@ perl -pi -e "s|-L/usr/lib\b|-L%{_libdir}|g" %{buildroot}%{_libdir}/*.la
 %clean
 [ "$RPM_BUILD_ROOT" != "/" ] && rm -rf $RPM_BUILD_ROOT
 
-%if %mdkversion < 200900
-%post -n %libname -p /sbin/ldconfig
-%endif
-
-%if %mdkversion < 200900
-%postun -n %libname -p /sbin/ldconfig
-%endif
 
 %files -f %name.lang
 %defattr(-,root,root)
 %doc AUTHORS README 
 %_bindir/gct-tool
+%_bindir/gsa
 %_datadir/%name
 
 %files -n %libname
