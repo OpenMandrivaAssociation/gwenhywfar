@@ -92,7 +92,7 @@ rm -fr %{buildroot} %{name}.lang
 %makeinstall_std
 find %{buildroot} -name \*.la|xargs rm
 %find_lang %{name}
-perl -pi -e "s#-L$RPM_BUILD_DIR/%{name}-%{version}/src##" %{buildroot}%{_libdir}/*.la %{buildroot}%{_libdir}/%{name}/plugins/*/*/*.la
+perl -pi -e "s#-L%{_builddir}/%{name}-%{version}/src##" %{buildroot}%{_libdir}/*.la %{buildroot}%{_libdir}/%{name}/plugins/*/*/*.la
 ln -snf %{_sysconfdir}/pki/tls/certs/ca-bundle.crt %{buildroot}%{_datadir}/%{name}/ca-bundle.crt
 
 %clean
