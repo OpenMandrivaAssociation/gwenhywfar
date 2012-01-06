@@ -9,9 +9,9 @@
 
 Summary: A multi-platform helper library for other libraries
 Name: gwenhywfar
-Version: 4.3.0
-Release: %mkrel 1
-Source: http://files.hboeck.de/aq/%{name}-%{version}.tar.gz
+Version: 4.3.1
+Release: 1
+Source0: http://files.hboeck.de/aq/%{name}-%{version}.tar.gz
 BuildRequires: automake
 BuildRequires: autoconf >= 2.58
 BuildRequires: gettext-devel
@@ -26,7 +26,6 @@ Suggests: %{name}-gui = %{version}
 Group: System/Libraries
 License: LGPLv2+
 URL: http://gwenhywfar.sourceforge.net/
-BuildRoot: %{_tmppath}/%{name}-%{version}-root
 
 %description
 This is Gwenhywfar, a multi-platform helper library for networking and
@@ -94,10 +93,6 @@ find %{buildroot} -name \*.la|xargs rm
 %find_lang %{name}
 perl -pi -e "s#-L%{_builddir}/%{name}-%{version}/src##" %{buildroot}%{_libdir}/*.la %{buildroot}%{_libdir}/%{name}/plugins/*/*/*.la
 ln -snf %{_sysconfdir}/pki/tls/certs/ca-bundle.crt %{buildroot}%{_datadir}/%{name}/ca-bundle.crt
-
-%clean
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
-
 
 %files -f %{name}.lang
 %defattr(-,root,root)
