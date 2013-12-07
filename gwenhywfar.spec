@@ -10,7 +10,7 @@
 Summary:	A multi-platform helper library for other libraries
 Name:		gwenhywfar
 Version:	4.3.3
-Release:	4
+Release:	5
 Group:		System/Libraries
 License:	LGPLv2+
 Url:		http://gwenhywfar.sourceforge.net/
