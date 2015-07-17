@@ -5,16 +5,19 @@
 %define libplugins %mklibname %{name}-plugins %{guimajor}
 %define libgtkgui %mklibname gwengui-gtk2_ %{guimajor}
 %define libqt4gui %mklibname gwengui-qt4_ %{guimajor}
+%define cpplibname %mklibname gwengui-cpp %{guimajor}
 %define devname %mklibname -d %{name}
 
 Summary:	A multi-platform helper library for other libraries
 Name:		gwenhywfar
-Version:	4.3.3
-Release:	9
+Version:	4.13.1
+Release:	1
 Group:		System/Libraries
 License:	LGPLv2+
 Url:		http://gwenhywfar.sourceforge.net/
 Source0:	http://files.hboeck.de/aq/%{name}-%{version}.tar.gz
+Patch1:		gnutls.patch
+BuildRequires:	cmake
 BuildRequires:	gettext-devel
 BuildRequires:	qt4-devel
 BuildRequires:	pkgconfig(gnutls)
@@ -82,6 +85,16 @@ Group:		System/Libraries
 %description -n %{libgtkgui}
 This package contains a shared library for %{name} - gui GTK+2.
 
+%package -n %cpplibname
+Summary: A multi-platform helper library for other libraries
+Group: System/Libraries
+Provides: %{name}-gui = %{version}
+
+%description -n %cpplibname
+This is Gwenhywfar, a multi-platform helper library for networking and
+security applications and libraries. It is heavily used by libchipcard
+and OpenHBCI-TNG (The Next Generation).
+
 %package -n %{devname}
 Summary:	Gwenhywfar development kit
 Group:		Development/C
@@ -89,6 +102,7 @@ Requires:	%{libplugins} = %{version}-%{release}
 Requires:	%{libname} = %{version}-%{release}
 Requires:	%{libqt4gui} = %{version}-%{release}
 Requires:	%{libgtkgui} = %{version}-%{release}
+Requires:	%{cpplibname} = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
 
 %description -n %{devname}
@@ -97,10 +111,10 @@ compiling programs using Gwenhywfar.
 
 %prep
 %setup -q
+%apply_patches
 
 %build
-%configure2_5x \
-	--disable-static \
+%configure \
 	--with-guis="qt4 gtk2" \
 	--with-qt4-libs=%{qt4lib} \
 	--with-openssl-libs=%{_libdir}
@@ -147,6 +161,10 @@ ln -snf %{_sysconfdir}/pki/tls/certs/ca-bundle.crt %{buildroot}%{_datadir}/%{nam
 %files -n %{libgtkgui}
 %{_libdir}/libgwengui-gtk2.so.%{guimajor}*
 
+%files -n %cpplibname
+%{_libdir}/libgwengui-cpp.so.%{guimajor}
+%{_libdir}/libgwengui-cpp.so.%{guimajor}.*
+
 %files -n %{devname}
 %{_bindir}/gwenhywfar-config
 %{_includedir}/gwenhywfar4
@@ -154,4 +172,4 @@ ln -snf %{_sysconfdir}/pki/tls/certs/ca-bundle.crt %{buildroot}%{_datadir}/%{nam
 %{_libdir}/pkgconfig/*.pc
 %{_libdir}/%{name}/plugins/%{major}/dbio/*.so
 %{_datadir}/aclocal/gwenhywfar.m4
-
+%{_libdir}/cmake/*
