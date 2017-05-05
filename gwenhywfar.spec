@@ -10,7 +10,7 @@
 
 Summary:	A multi-platform helper library for other libraries
 Name:		gwenhywfar
-Version:	4.15.3
+Version:	4.17.0
 Release:	1
 Group:		System/Libraries
 License:	LGPLv2+
@@ -116,6 +116,7 @@ compiling programs using Gwenhywfar.
 %configure \
 	--with-guis="qt4 gtk2" \
 	--with-qt4-libs=%{qt4lib} \
+	--enable-ssl \
 	--with-openssl-libs=%{_libdir}
 %make
 
@@ -137,7 +138,7 @@ ln -snf %{_sysconfdir}/pki/tls/certs/ca-bundle.crt %{buildroot}%{_datadir}/%{nam
 %{_bindir}/xmlmerge
 %{_datadir}/%{name}
 
-%files -n %{libplugins} 
+%files -n %{libplugins}
 %dir %{_libdir}/%{name}
 %dir %{_libdir}/%{name}/plugins
 %dir %{_libdir}/%{name}/plugins/%{major}
