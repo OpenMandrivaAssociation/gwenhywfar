@@ -22,6 +22,7 @@ BuildRequires:	cmake
 BuildRequires:	cmake(ECM)
 BuildRequires:	gettext-devel
 BuildRequires:	qt5-devel
+BuildRequires:	cmake(Qt5Test)
 BuildRequires:	pkgconfig(gnutls)
 BuildRequires:	pkgconfig(gtk+-2.0)
 BuildRequires:	pkgconfig(libgcrypt)
