@@ -116,10 +116,17 @@ compiling programs using Gwenhywfar.
 %apply_patches
 
 %build
+
+export PATH=%_qt5_bindir:$PATH
+
 %configure \
 	--with-guis="qt5 gtk2" \
 	--enable-ssl \
-	--with-openssl-libs=%{_libdir}
+	--with-openssl-libs=%{_libdir} \
+  --with-qt5-qmake=%_qt5_bindir/qmake \
+  --with-qt5-moc=%_qt5_bindir/moc \
+  --with-qt5-uic=%_qt5_bindir/uic
+
 %make
 
 %install
