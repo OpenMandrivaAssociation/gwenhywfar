@@ -1,24 +1,27 @@
 %define major	60
 %define libname	%mklibname %{name} %{major}
 
+%define _disable_lto 1
+
 %define guimajor 0
 %define libplugins %mklibname %{name}-plugins %{guimajor}
 %define libgtkgui %mklibname gwengui-gtk2_ %{guimajor}
-%define libqt4gui %mklibname gwengui-qt4_ %{guimajor}
+%define libqt5gui %mklibname gwengui-qt5_ %{guimajor}
 %define cpplibname %mklibname gwengui-cpp %{guimajor}
 %define devname %mklibname -d %{name}
 
 Summary:	A multi-platform helper library for other libraries
 Name:		gwenhywfar
 Version:	4.17.0
-Release:	1
+Release:	2
 Group:		System/Libraries
 License:	LGPLv2+
 Url:		http://gwenhywfar.sourceforge.net/
 Source0:	http://files.hboeck.de/aq/%{name}-%{version}.tar.gz
 BuildRequires:	cmake
+BuildRequires:	cmake(ECM)
 BuildRequires:	gettext-devel
-BuildRequires:	qt4-devel
+BuildRequires:	qt5-devel
 BuildRequires:	pkgconfig(gnutls)
 BuildRequires:	pkgconfig(gtk+-2.0)
 BuildRequires:	pkgconfig(libgcrypt)
@@ -70,11 +73,11 @@ Suggests:	%{libplugins} >= %{version}-%{release}
 %description -n %{libname}
 This package contains a shared library for %{name}.
 
-%package -n %{libqt4gui}
+%package -n %{libqt5gui}
 Summary:	A multi-platform helper library for other libraries
 Group:		System/Libraries
 
-%description -n %{libqt4gui}
+%description -n %{libqt5gui}
 This package contains a shared library for %{name} - gui QT4.
 
 %package -n %{libgtkgui}
@@ -99,7 +102,7 @@ Summary:	Gwenhywfar development kit
 Group:		Development/C
 Requires:	%{libplugins} = %{version}-%{release}
 Requires:	%{libname} = %{version}-%{release}
-Requires:	%{libqt4gui} = %{version}-%{release}
+Requires:	%{libqt5gui} = %{version}-%{release}
 Requires:	%{libgtkgui} = %{version}-%{release}
 Requires:	%{cpplibname} = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
@@ -114,8 +117,7 @@ compiling programs using Gwenhywfar.
 
 %build
 %configure \
-	--with-guis="qt4 gtk2" \
-	--with-qt4-libs=%{qt4lib} \
+	--with-guis="qt5 gtk2" \
 	--enable-ssl \
 	--with-openssl-libs=%{_libdir}
 %make
@@ -155,8 +157,8 @@ ln -snf %{_sysconfdir}/pki/tls/certs/ca-bundle.crt %{buildroot}%{_datadir}/%{nam
 %files -n %{libname}
 %{_libdir}/libgwenhywfar.so.%{major}*
 
-%files -n %{libqt4gui}
-%{_libdir}/libgwengui-qt4.so.%{guimajor}*
+%files -n %{libqt5gui}
+%{_libdir}/libgwengui-qt5.so.%{guimajor}*
 
 %files -n %{libgtkgui}
 %{_libdir}/libgwengui-gtk2.so.%{guimajor}*
