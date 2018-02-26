@@ -126,7 +126,7 @@ export PATH=%_qt5_bindir:$PATH
 	--with-openssl-libs=%{_libdir} \
   --with-qt5-qmake=%_qt5_bindir/qmake \
   --with-qt5-moc=%_qt5_bindir/moc \
-  --with-qt5-uic=%_qt5_bindir/uic
+  --with-qt5-uic=%_qt5_bindir/uic || (cat config.log && exit 1)
 
 %make
 
