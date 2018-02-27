@@ -118,6 +118,11 @@ compiling programs using Gwenhywfar.
 
 %build
 
+%ifarch %ix86
+# cb - for some reason this doesnt get set on x86_32
+export CXX="%__cxx -std=gnu++11"
+%endif
+
 export PATH=%_qt5_bindir:$PATH
 
 %configure \
