@@ -5,7 +5,7 @@
 
 %define guimajor 0
 %define libplugins %mklibname %{name}-plugins %{guimajor}
-%define libgtkgui %mklibname gwengui-gtk2_ %{guimajor}
+%define libgtk3gui %mklibname gwengui-gtk3_ %{guimajor}
 %define libqt5gui %mklibname gwengui-qt5_ %{guimajor}
 %define cpplibname %mklibname gwengui-cpp %{guimajor}
 %define devname %mklibname -d %{name}
@@ -13,7 +13,7 @@
 Summary:	A multi-platform helper library for other libraries
 Name:		gwenhywfar
 Version:	4.20.0
-Release:	1
+Release:	2
 Group:		System/Libraries
 License:	LGPLv2+
 Url:		http://gwenhywfar.sourceforge.net/
@@ -24,7 +24,7 @@ BuildRequires:	gettext-devel
 BuildRequires:	qt5-devel
 BuildRequires:	cmake(Qt5Test)
 BuildRequires:	pkgconfig(gnutls)
-BuildRequires:	pkgconfig(gtk+-2.0)
+BuildRequires:	pkgconfig(gtk+-3.0)
 BuildRequires:	pkgconfig(libgcrypt)
 BuildRequires:	pkgconfig(ncurses)
 BuildRequires:	pkgconfig(openssl)
@@ -81,12 +81,12 @@ Group:		System/Libraries
 %description -n %{libqt5gui}
 This package contains a shared library for %{name} - gui QT4.
 
-%package -n %{libgtkgui}
-Summary:	A multi-platform helper library for other libraries
-Group:		System/Libraries
+%package -n %{libgtk3gui}
+Summary:        A multi-platform helper library for other libraries
+Group:          System/Libraries
 
-%description -n %{libgtkgui}
-This package contains a shared library for %{name} - gui GTK+2.
+%description -n %{libgtk3gui}
+This package contains a shared library for %{name} - gui GTK+3.
 
 %package -n %cpplibname
 Summary: A multi-platform helper library for other libraries
@@ -104,7 +104,7 @@ Group:		Development/C
 Requires:	%{libplugins} = %{version}-%{release}
 Requires:	%{libname} = %{version}-%{release}
 Requires:	%{libqt5gui} = %{version}-%{release}
-Requires:	%{libgtkgui} = %{version}-%{release}
+Requires:	%{libgtk3gui} = %{version}-%{release}
 Requires:	%{cpplibname} = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
 
@@ -121,7 +121,7 @@ compiling programs using Gwenhywfar.
 export PATH=%_qt5_bindir:$PATH
 
 %configure \
-	--with-guis="qt5 gtk2" \
+	--with-guis="qt5 gtk3" \
 	--enable-ssl \
 	--with-openssl-libs=%{_libdir} \
   --with-qt5-qmake=%_qt5_bindir/qmake \
@@ -168,8 +168,8 @@ ln -snf %{_sysconfdir}/pki/tls/certs/ca-bundle.crt %{buildroot}%{_datadir}/%{nam
 %files -n %{libqt5gui}
 %{_libdir}/libgwengui-qt5.so.%{guimajor}*
 
-%files -n %{libgtkgui}
-%{_libdir}/libgwengui-gtk2.so.%{guimajor}*
+%files -n %{libgtk3gui}
+%{_libdir}/libgwengui-gtk3.so.%{guimajor}*
 
 %files -n %cpplibname
 %{_libdir}/libgwengui-cpp.so.%{guimajor}
