@@ -1,0 +1,60 @@
+--- a/gui/gtk3/w_combobox.c	2018-02-10 18:32:17.000000000 +0000
++++ b/gui/gtk3/w_combobox.c	2018-03-31 23:46:37.000000000 +0100
+@@ -258,10 +258,13 @@
+   /* create widget */
+   store=gtk_list_store_new(1, G_TYPE_STRING);
+   if (flags & GWEN_WIDGET_FLAGS_READONLY)
+-    g=gtk_combo_box_new_with_model_and_entry(GTK_TREE_MODEL(store));
++    g=gtk_combo_box_new_with_model(GTK_TREE_MODEL(store));
+   else
++  {
+     /* TODO: why the heck does *this* combo box have two columns in the list?? */
+     g=gtk_combo_box_new_with_model_and_entry(GTK_TREE_MODEL(store));
++    gtk_combo_box_set_entry_text_column (GTK_COMBO_BOX(g), 0);
++  }
+   g_object_unref(store);
+ 
+   cr=gtk_cell_renderer_text_new();
+--- a/gui/gtk3/w_groupbox.c	2018-02-10 18:32:21.000000000 +0000
++++ b/gui/w_groupbox.c	2018-03-31 23:46:37.000000000 +0100
+@@ -36,6 +36,10 @@
+     /* just ignore these for now */
+     return 0;
+ 
++  case GWEN_DialogProperty_Visibility:
++    gtk_widget_set_visible (GTK_WIDGET(g), (value==0)?FALSE:TRUE);
++    return 0;
++
+   default:
+     break;
+   }
+@@ -72,6 +76,9 @@
+     /* just ignore these for now */
+     return 0;
+ 
++  case  GWEN_DialogProperty_Visibility:
++    return (gtk_widget_get_visible(GTK_WIDGET(g))==TRUE)?1:0;
++
+   default:
+     break;
+   }
+--- a/gui/gtk3/w_lineedit.c	2018-02-10 18:32:17.000000000 +0000
++++ b/gui/gtk3/w_lineedit.c	2018-03-31 23:46:37.000000000 +0100
+@@ -97,6 +97,7 @@
+ 
+   switch(prop) {
+   case GWEN_DialogProperty_Value:
++    if (value && *value)
+     gtk_entry_set_text(GTK_ENTRY(g), value);
+     return 0;
+   default:
+--- a/gui/gtk3/w_textbrowser.c	2018-02-10 18:32:21.000000000 +0000
++++ b/gui/gtk3/w_textbrowser.c	2018-03-31 23:46:37.000000000 +0100
+@@ -203,6 +203,7 @@
+   /* create widget */
+   gs=gtk_scrolled_window_new(NULL, NULL);
+   g=gtk_text_view_new();
++  gtk_container_add(GTK_CONTAINER(gs), GTK_WIDGET(g));
+ 
+   if (s && *s) {
+     GWEN_BUFFER *tbuf;
