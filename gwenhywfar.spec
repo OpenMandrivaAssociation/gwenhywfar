@@ -19,6 +19,7 @@ License:	LGPLv2+
 Url:		http://gwenhywfar.sourceforge.net/
 Source0:	http://files.hboeck.de/aq/%{name}-%{version}.tar.gz
 Patch1:		gtk3-fixes.patch
+BuildRequires:	pkgconfig(ice)
 BuildRequires:	cmake
 BuildRequires:	cmake(ECM)
 BuildRequires:	gettext-devel
