@@ -18,6 +18,8 @@ Group:		System/Libraries
 License:	LGPLv2+
 Url:		http://gwenhywfar.sourceforge.net/
 Source0:	http://files.hboeck.de/aq/%{name}-%{version}.tar.gz
+# dont try to require all the qt modules, only the ones actually used
+Patch1:		gwenhywfar-qt5_mods.patch
 BuildRequires:	pkgconfig(ice)
 BuildRequires:	cmake
 BuildRequires:	qmake5
