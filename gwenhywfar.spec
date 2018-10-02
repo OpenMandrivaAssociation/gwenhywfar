@@ -12,13 +12,12 @@
 
 Summary:	A multi-platform helper library for other libraries
 Name:		gwenhywfar
-Version:	4.20.0
-Release:	3
+Version:	4.20.1
+Release:	1
 Group:		System/Libraries
 License:	LGPLv2+
 Url:		http://gwenhywfar.sourceforge.net/
 Source0:	http://files.hboeck.de/aq/%{name}-%{version}.tar.gz
-Patch1:		gtk3-fixes.patch
 BuildRequires:	pkgconfig(ice)
 BuildRequires:	cmake
 BuildRequires:	cmake(ECM)
@@ -117,6 +116,9 @@ compiling programs using Gwenhywfar.
 %prep
 %setup -q
 %apply_patches
+
+autoreconf -fiv
+
 
 %build
 
