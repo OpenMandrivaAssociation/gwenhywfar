@@ -20,11 +20,12 @@ Url:		http://gwenhywfar.sourceforge.net/
 Source0:	http://files.hboeck.de/aq/%{name}-%{version}.tar.gz
 BuildRequires:	pkgconfig(ice)
 BuildRequires:	cmake
-BuildRequires:	cmake(ECM)
+BuildRequires:	qmake5
 BuildRequires:	gettext-devel
-BuildRequires:	qt5-devel
-BuildRequires:	cmake(Qt5QuickTest)
-BuildRequires:	cmake(Qt5Test)
+BuildRequires:	cmake(Qt5LinguistTools)
+BuildRequires:	cmake(Qt5Core)
+BuildRequires:	cmake(Qt5Gui)
+BuildRequires:	cmake(Qt5Widgets)
 BuildRequires:	pkgconfig(gnutls)
 BuildRequires:	pkgconfig(gtk+-3.0)
 BuildRequires:	pkgconfig(libgcrypt)
