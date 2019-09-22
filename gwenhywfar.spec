@@ -1,4 +1,4 @@
-%define major	60
+%define major	78
 %define libname	%mklibname %{name} %{major}
 
 %define _disable_lto 1
@@ -12,14 +12,12 @@
 
 Summary:	A multi-platform helper library for other libraries
 Name:		gwenhywfar
-Version:	4.20.1
-Release:	2
+Version:	4.99.16beta
+Release:	1
 Group:		System/Libraries
 License:	LGPLv2+
-Url:		http://gwenhywfar.sourceforge.net/
-Source0:	http://files.hboeck.de/aq/%{name}-%{version}.tar.gz
-# dont try to require all the qt modules, only the ones actually used
-Patch1:		gwenhywfar-qt5_mods.patch
+Url:		http://www.aqbanking.de/
+Source0:	https://www.aquamaniac.de/rdm/attachments/download/140/gwenhywfar-%{version}.tar.gz
 BuildRequires:	pkgconfig(ice)
 BuildRequires:	cmake
 BuildRequires:	qmake5
@@ -137,11 +135,11 @@ export PATH=%_qt5_bindir:$PATH
 	--with-guis="qt5 gtk3" \
 	--enable-ssl \
 	--with-openssl-libs=%{_libdir} \
-  --with-qt5-qmake=%_qt5_bindir/qmake \
-  --with-qt5-moc=%_qt5_bindir/moc \
-  --with-qt5-uic=%_qt5_bindir/uic || (cat config.log && exit 1)
+	--with-qt5-qmake=%_qt5_bindir/qmake \
+	--with-qt5-moc=%_qt5_bindir/moc \
+	--with-qt5-uic=%_qt5_bindir/uic || (cat config.log && exit 1)
 
-%make
+%make QT_LIBS='-lQt5Core -lQt5Gui -lQt5Widgets'
 
 %install
 %makeinstall_std
@@ -190,7 +188,7 @@ ln -snf %{_sysconfdir}/pki/tls/certs/ca-bundle.crt %{buildroot}%{_datadir}/%{nam
 
 %files -n %{devname}
 %{_bindir}/gwenhywfar-config
-%{_includedir}/gwenhywfar4
+%{_includedir}/gwenhywfar5
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*.pc
 %{_libdir}/%{name}/plugins/%{major}/dbio/*.so
