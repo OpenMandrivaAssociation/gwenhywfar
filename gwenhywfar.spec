@@ -1,4 +1,4 @@
-%define major	78
+%define major	79
 %define libname	%mklibname %{name} %{major}
 
 %define _disable_lto 1
@@ -12,12 +12,12 @@
 
 Summary:	A multi-platform helper library for other libraries
 Name:		gwenhywfar
-Version:	4.99.16beta
+Version:	5.1.2
 Release:	1
 Group:		System/Libraries
 License:	LGPLv2+
 Url:		http://www.aqbanking.de/
-Source0:	https://www.aquamaniac.de/rdm/attachments/download/140/gwenhywfar-%{version}.tar.gz
+Source0:	https://www.aquamaniac.de/rdm/attachments/download/234/gwenhywfar-%{version}.tar.gz
 BuildRequires:	pkgconfig(ice)
 BuildRequires:	cmake
 BuildRequires:	qmake5
