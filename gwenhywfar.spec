@@ -3,7 +3,7 @@
 
 %define _disable_lto 1
 
-%define guimajor 0
+%define guimajor %{major}
 %define libplugins %mklibname %{name}-plugins %{guimajor}
 %define libgtk3gui %mklibname gwengui-gtk3_ %{guimajor}
 %define libqt5gui %mklibname gwengui-qt5_ %{guimajor}
@@ -12,12 +12,12 @@
 
 Summary:	A multi-platform helper library for other libraries
 Name:		gwenhywfar
-Version:	5.1.2
+Version:	5.4.1
 Release:	1
 Group:		System/Libraries
 License:	LGPLv2+
 Url:		http://www.aqbanking.de/
-Source0:	https://www.aquamaniac.de/rdm/attachments/download/234/gwenhywfar-%{version}.tar.gz
+Source0:	https://www.aquamaniac.de/rdm/attachments/download/344/gwenhywfar-%{version}.tar.gz
 BuildRequires:	pkgconfig(ice)
 BuildRequires:	cmake
 BuildRequires:	qmake5
@@ -178,7 +178,7 @@ ln -snf %{_sysconfdir}/pki/tls/certs/ca-bundle.crt %{buildroot}%{_datadir}/%{nam
 %{_libdir}/%{name}/plugins/%{major}/configmgr/dir.xml
 %{_libdir}/%{name}/plugins/%{major}/ct/ohbci.so
 %{_libdir}/%{name}/plugins/%{major}/ct/ohbci.xml
-%{_libdir}/%{name}/plugins/%{major}/dbio/*.so.%{guimajor}*
+%{_libdir}/%{name}/plugins/%{major}/dbio/*.so.0*
 %{_libdir}/%{name}/plugins/%{major}/dbio/*.xml
 
 %files -n %{libname}
