@@ -12,12 +12,13 @@
 
 Summary:	A multi-platform helper library for other libraries
 Name:		gwenhywfar
-Version:	5.4.1
+Version:	5.6.0
 Release:	1
 Group:		System/Libraries
 License:	LGPLv2+
 Url:		http://www.aqbanking.de/
-Source0:	https://www.aquamaniac.de/rdm/attachments/download/344/gwenhywfar-%{version}.tar.gz
+Source0:	https://www.aquamaniac.de/rdm/attachments/download/364/gwenhywfar-%{version}.tar.gz
+Patch0:		gwenhywfar-5.6.0-linkage.patch
 BuildRequires:	pkgconfig(ice)
 BuildRequires:	cmake
 BuildRequires:	qmake5

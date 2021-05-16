@@ -1,0 +1,24 @@
+diff -up gwenhywfar-5.6.0/gui/qt5/Makefile.am.omv~ gwenhywfar-5.6.0/gui/qt5/Makefile.am
+--- gwenhywfar-5.6.0/gui/qt5/Makefile.am.omv~	2021-05-17 00:44:24.885071115 +0200
++++ gwenhywfar-5.6.0/gui/qt5/Makefile.am	2021-05-17 00:44:39.420307931 +0200
+@@ -15,7 +15,7 @@ noinst_PROGRAMS=libtest
+ 
+ noinst_HEADERS=
+ 
+-libgwengui_qt5_la_LIBADD=$(QT_LIBS) $(top_builddir)/src/$(gwenhywfar_internal_libname) $(builddir)/../cpp/libgwengui-cpp.la
++libgwengui_qt5_la_LIBADD=$(QT_LIBS) $(top_builddir)/src/$(gwenhywfar_internal_libname) $(builddir)/../cpp/libgwengui-cpp.la -lQt5Core -lQt5Gui -lQt5Widgets
+ libgwengui_qt5_la_LDFLAGS=-no-undefined -version-info \
+    $(GWENHYWFAR_SO_CURRENT):$(GWENHYWFAR_SO_REVISION):$(GWENHYWFAR_SO_AGE)
+ 
+diff -up gwenhywfar-5.6.0/src/Makefile.am.omv~ gwenhywfar-5.6.0/src/Makefile.am
+--- gwenhywfar-5.6.0/src/Makefile.am.omv~	2021-05-17 00:43:18.900995650 +0200
++++ gwenhywfar-5.6.0/src/Makefile.am	2021-05-17 00:43:33.314230630 +0200
+@@ -64,7 +64,7 @@ libgwenhywfar_la_LIBADD=\
+   gui/libgui.la \
+   sar/libsar.la \
+   xmlcmd/libxmlcmd.la \
+-  test_framework/libtestframework.la $(i18n_libs) $(PTHREAD_CFLAGS) $(PTHREAD_LIBS) $(ICONV_LIBS) $(LIBGCRYPT_LIBS) $(LIBGNUTLS_LIBS) $(LIBXML_LIBS) $(all_libraries)
++  test_framework/libtestframework.la $(i18n_libs) $(PTHREAD_CFLAGS) $(PTHREAD_LIBS) $(ICONV_LIBS) $(LIBGCRYPT_LIBS) $(LIBGNUTLS_LIBS) $(LIBXML_LIBS) $(all_libraries) -ldl
+ 
+ libgwenhywfar_la_CFLAGS=$(PTHREAD_CFLAGS)
+ 
