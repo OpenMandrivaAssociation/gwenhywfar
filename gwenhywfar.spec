@@ -19,6 +19,10 @@ License:	LGPLv2+
 Url:		https://www.aqbanking.de/
 Source0:	https://www.aquamaniac.de/rdm/attachments/download/364/gwenhywfar-%{version}.tar.gz
 Patch0:		gwenhywfar-5.6.0-linkage.patch
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
 BuildRequires:	pkgconfig(ice)
 BuildRequires:	cmake
 BuildRequires:	qmake5
