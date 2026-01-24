@@ -6,39 +6,41 @@
 %define guimajor %{major}
 %define libplugins %mklibname %{name}-plugins %{guimajor}
 %define libgtk3gui %mklibname gwengui-gtk3_ %{guimajor}
-%define libqt5gui %mklibname gwengui-qt5_ %{guimajor}
+%define libqt5gui %mklibname gwengui-qt6_ %{guimajor}
 %define cpplibname %mklibname gwengui-cpp %{guimajor}
 %define devname %mklibname -d %{name}
 
 Summary:	A multi-platform helper library for other libraries
 Name:		gwenhywfar
-Version:	5.6.0
-Release:	2
+Version:	5.14.1
+Release:	1
 Group:		System/Libraries
 License:	LGPLv2+
 Url:		https://www.aqbanking.de/
-Source0:	https://www.aquamaniac.de/rdm/attachments/download/364/gwenhywfar-%{version}.tar.gz
-Patch0:		gwenhywfar-5.6.0-linkage.patch
+Source0:	https://www.aquamaniac.de/rdm/attachments/download/630/gwenhywfar-%{version}.tar.gz
+# or git mirror https://github.com/aqbanking/gwenhywfar
+
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool-base
 BuildRequires:	slibtool
 BuildRequires:	pkgconfig(ice)
 BuildRequires:	cmake
-BuildRequires:	qmake5
+BuildRequires:	qmake-qt6
 BuildRequires:	gettext-devel
-BuildRequires:	cmake(Qt5LinguistTools)
-BuildRequires:	cmake(Qt5Core)
-BuildRequires:	cmake(Qt5Gui)
-BuildRequires:	cmake(Qt5Widgets)
-BuildRequires:	cmake(Qt5OpenGL)
-BuildRequires:	cmake(Qt5PrintSupport)
-BuildRequires:	cmake(Qt5Concurrent)
-BuildRequires:	cmake(Qt5DBus)
-BuildRequires:	cmake(Qt5Network)
-BuildRequires:	cmake(Qt5Sql)
-BuildRequires:	cmake(Qt5Test)
-BuildRequires:	cmake(Qt5Xml)
+BuildRequires:  cmake(Qt6Concurrent)
+BuildRequires:  cmake(Qt6Core)
+BuildRequires:  cmake(Qt6DBus)
+BuildRequires:  cmake(Qt6Gui)
+BuildRequires:  cmake(Qt6Help)
+BuildRequires:  cmake(Qt6Network)
+BuildRequires:  cmake(Qt6OpenGL)
+BuildRequires:  cmake(Qt6PrintSupport)
+BuildRequires:  cmake(Qt6Sql)
+BuildRequires:  cmake(Qt6Test)
+BuildRequires:  cmake(Qt6Widgets)
+BuildRequires:  cmake(Qt6Xml)
+BuildRequires:  cmake(KF6ItemViews)
 BuildRequires:	pkgconfig(gnutls)
 BuildRequires:	pkgconfig(gtk+-3.0)
 BuildRequires:	pkgconfig(libgcrypt)
@@ -90,12 +92,12 @@ Suggests:	%{libplugins} >= %{version}-%{release}
 %description -n %{libname}
 This package contains a shared library for %{name}.
 
-%package -n %{libqt5gui}
+%package -n %{libqt6gui}
 Summary:	A multi-platform helper library for other libraries
 Group:		System/Libraries
 
-%description -n %{libqt5gui}
-This package contains a shared library for %{name} - gui QT4.
+%description -n %{libqt6gui}
+This package contains a shared library for %{name} - gui QT6.
 
 %package -n %{libgtk3gui}
 Summary:        A multi-platform helper library for other libraries
@@ -119,7 +121,7 @@ Summary:	Gwenhywfar development kit
 Group:		Development/C
 Requires:	%{libplugins} = %{version}-%{release}
 Requires:	%{libname} = %{version}-%{release}
-Requires:	%{libqt5gui} = %{version}-%{release}
+Requires:	%{libqt6gui} = %{version}-%{release}
 Requires:	%{libgtk3gui} = %{version}-%{release}
 Requires:	%{cpplibname} = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
@@ -129,8 +131,7 @@ This package contains gwenhywfar-config and header files for writing and
 compiling programs using Gwenhywfar.
 
 %prep
-%setup -q
-%autopatch -p1
+%autosetup -p1
 
 autoreconf -fiv
 
@@ -147,12 +148,9 @@ export PATH=%_qt5_bindir:$PATH
 %configure \
 	--with-guis="qt5 gtk3" \
 	--enable-ssl \
-	--with-openssl-libs=%{_libdir} \
-	--with-qt5-qmake=%_qt5_bindir/qmake \
-	--with-qt5-moc=%_qt5_bindir/moc \
-	--with-qt5-uic=%_qt5_bindir/uic || (cat config.log && exit 1)
+	--with-openssl-libs=%{_libdir} || (cat config.log && exit 1)
 
-%make QT_LIBS='-lQt5Core -lQt5Gui -lQt5Widgets'
+%make QT_LIBS='-lQt6Core -lQt6Gui -lQt6Widgets'
 
 %install
 %makeinstall_std
@@ -189,7 +187,7 @@ ln -snf %{_sysconfdir}/pki/tls/certs/ca-bundle.crt %{buildroot}%{_datadir}/%{nam
 %files -n %{libname}
 %{_libdir}/libgwenhywfar.so.%{major}*
 
-%files -n %{libqt5gui}
+%files -n %{libqt6gui}
 %{_libdir}/libgwengui-qt5.so.%{guimajor}*
 
 %files -n %{libgtk3gui}
