@@ -20,6 +20,7 @@ Url:		https://www.aqbanking.de/
 Source0:	https://www.aquamaniac.de/rdm/attachments/download/630/gwenhywfar-%{version}.tar.gz
 # or git mirror https://github.com/aqbanking/gwenhywfar
 
+BuildRequires:	make
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool-base
