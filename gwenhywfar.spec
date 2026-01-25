@@ -144,7 +144,7 @@ autoreconf -fiv
 export CXX="%__cxx -std=gnu++11"
 %endif
 
-export PATH=%_qt5_bindir:$PATH
+export PATH=%{_qt6_bindir}:$PATH
 
 %configure \
 	--with-guis="qt5 gtk3" \
