@@ -149,7 +149,10 @@ export PATH=%{_qt6_bindir}:$PATH
 %configure \
 	--with-guis="qt5 gtk3" \
 	--enable-ssl \
-	--with-openssl-libs=%{_libdir} || (cat config.log && exit 1)
+	--with-openssl-libs=%{_libdir} \
+	--with-qt6-qmake=%_qt6_bindir/qmake \
+	--with-qt6-moc=%_qt6_bindir/moc \
+	--with-qt6-uic=%_qt6_bindir/uic || (cat config.log && exit 1)
 
 %make QT_LIBS='-lQt6Core -lQt6Gui -lQt6Widgets'
 
