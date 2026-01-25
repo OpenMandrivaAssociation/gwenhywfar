@@ -6,7 +6,7 @@
 %define guimajor %{major}
 %define libplugins %mklibname %{name}-plugins %{guimajor}
 %define libgtk3gui %mklibname gwengui-gtk3_ %{guimajor}
-%define libqt5gui %mklibname gwengui-qt6_ %{guimajor}
+%define libqt6gui %mklibname gwengui-qt6_ %{guimajor}
 %define cpplibname %mklibname gwengui-cpp %{guimajor}
 %define devname %mklibname -d %{name}
 
