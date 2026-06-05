@@ -13,7 +13,7 @@
 Summary:	A multi-platform helper library for other libraries
 Name:		gwenhywfar
 Version:	5.6.0
-Release:	2
+Release:	3
 Group:		System/Libraries
 License:	LGPLv2+
 Url:		https://www.aqbanking.de/
